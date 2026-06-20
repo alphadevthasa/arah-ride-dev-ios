@@ -1,0 +1,464 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		32E042082E4602F0F942D522 /* RideMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D458BB97A4CAB89A02A44081 /* RideMap.swift */; };
+		3C05F39C4A7392A4F81C2751 /* MapLibre in Frameworks */ = {isa = PBXBuildFile; productRef = E01DEFA03A95BD238F7825F3 /* MapLibre */; };
+		653DB2A2AE42CD165CEB94EC /* RideMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D458BB97A4CAB89A02A44081 /* RideMap.swift */; };
+		7085E3B8B7B25F360FBE04A5 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861491D6098AE61B8A0C132 /* AppConfig.swift */; };
+		89173D5A7F8907D74C2C880D /* ArahCustomerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D89D859E50F7CA078901C97 /* ArahCustomerApp.swift */; };
+		8A5BE374E97B8B86824A3F8D /* ArahDriverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6D5E5661C453EC5EF7BC0 /* ArahDriverApp.swift */; };
+		9592EBFEEFF0F40C7D000127 /* RideStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAEFDC8BDEEAA490EB34AA0 /* RideStore.swift */; };
+		A2981DCFCC71529295E1C5DD /* RideScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E195B1B6A6AC16D1EF6B9CB /* RideScreen.swift */; };
+		C9EEC0A52DF0678F80E8266F /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861491D6098AE61B8A0C132 /* AppConfig.swift */; };
+		D9C1542E5B0D020A5461E240 /* RideModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20306D4FCAFEF4ACC83C7751 /* RideModels.swift */; };
+		E48B1465C000F2436B49C98B /* RideStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAEFDC8BDEEAA490EB34AA0 /* RideStore.swift */; };
+		F10BDB378546C0523CE734E5 /* RideModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20306D4FCAFEF4ACC83C7751 /* RideModels.swift */; };
+		F5E69144F768AEBFBD90C2B7 /* RideScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E195B1B6A6AC16D1EF6B9CB /* RideScreen.swift */; };
+		F805663E2C8E42D738479F8D /* MapLibre in Frameworks */ = {isa = PBXBuildFile; productRef = A87AFD2F9A32F3682F7D7408 /* MapLibre */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		15A6D5E5661C453EC5EF7BC0 /* ArahDriverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArahDriverApp.swift; sourceTree = "<group>"; };
+		20306D4FCAFEF4ACC83C7751 /* RideModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideModels.swift; sourceTree = "<group>"; };
+		52F978FEB2401133AD69F9F2 /* ArahDriver.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ArahDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D89D859E50F7CA078901C97 /* ArahCustomerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArahCustomerApp.swift; sourceTree = "<group>"; };
+		9E195B1B6A6AC16D1EF6B9CB /* RideScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideScreen.swift; sourceTree = "<group>"; };
+		9EAEFDC8BDEEAA490EB34AA0 /* RideStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideStore.swift; sourceTree = "<group>"; };
+		D458BB97A4CAB89A02A44081 /* RideMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideMap.swift; sourceTree = "<group>"; };
+		D8B3CE71EBFB8235049BAE4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		EA9422D35C529A386EE05796 /* ArahCustomer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ArahCustomer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC3CA3674A8B3EC0149DB1E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F861491D6098AE61B8A0C132 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		513F8D2470DFA09689DB939F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C05F39C4A7392A4F81C2751 /* MapLibre in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D99EDF201223773BD7E47F0D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F805663E2C8E42D738479F8D /* MapLibre in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3414AA4ED0F81AB08677F822 /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				15A6D5E5661C453EC5EF7BC0 /* ArahDriverApp.swift */,
+				D8B3CE71EBFB8235049BAE4A /* Info.plist */,
+			);
+			path = Driver;
+			sourceTree = "<group>";
+		};
+		4AD1FE22FECDC2F400A6B97F /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				F861491D6098AE61B8A0C132 /* AppConfig.swift */,
+				D458BB97A4CAB89A02A44081 /* RideMap.swift */,
+				20306D4FCAFEF4ACC83C7751 /* RideModels.swift */,
+				9E195B1B6A6AC16D1EF6B9CB /* RideScreen.swift */,
+				9EAEFDC8BDEEAA490EB34AA0 /* RideStore.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		5E63CB826203DEE118969C1E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA9422D35C529A386EE05796 /* ArahCustomer.app */,
+				52F978FEB2401133AD69F9F2 /* ArahDriver.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5F3AAD42D257499728B85C81 /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				8D89D859E50F7CA078901C97 /* ArahCustomerApp.swift */,
+				EC3CA3674A8B3EC0149DB1E0 /* Info.plist */,
+			);
+			path = Customer;
+			sourceTree = "<group>";
+		};
+		895A9823461C7B9AC79A25BE = {
+			isa = PBXGroup;
+			children = (
+				5F3AAD42D257499728B85C81 /* Customer */,
+				3414AA4ED0F81AB08677F822 /* Driver */,
+				4AD1FE22FECDC2F400A6B97F /* Shared */,
+				5E63CB826203DEE118969C1E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B823D149175EB1E42E643202 /* ArahCustomer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AFA1A4975A615211BF12687 /* Build configuration list for PBXNativeTarget "ArahCustomer" */;
+			buildPhases = (
+				A531DDAE5299177C987DCEE6 /* Sources */,
+				D99EDF201223773BD7E47F0D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ArahCustomer;
+			packageProductDependencies = (
+				A87AFD2F9A32F3682F7D7408 /* MapLibre */,
+			);
+			productName = ArahCustomer;
+			productReference = EA9422D35C529A386EE05796 /* ArahCustomer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D448E282F4B9B711605FEB99 /* ArahDriver */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A593B1AA79DBF23188CB745E /* Build configuration list for PBXNativeTarget "ArahDriver" */;
+			buildPhases = (
+				5A46CA78D609411F502D3523 /* Sources */,
+				513F8D2470DFA09689DB939F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ArahDriver;
+			packageProductDependencies = (
+				E01DEFA03A95BD238F7825F3 /* MapLibre */,
+			);
+			productName = ArahDriver;
+			productReference = 52F978FEB2401133AD69F9F2 /* ArahDriver.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B074066D48BCBDF243DBA004 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					B823D149175EB1E42E643202 = {
+						DevelopmentTeam = "";
+					};
+					D448E282F4B9B711605FEB99 = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = 2C9F39949C43C33717E097A6 /* Build configuration list for PBXProject "ArahRide" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 895A9823461C7B9AC79A25BE;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E0EECED1AECD868D17DFDE03 /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 5E63CB826203DEE118969C1E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B823D149175EB1E42E643202 /* ArahCustomer */,
+				D448E282F4B9B711605FEB99 /* ArahDriver */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5A46CA78D609411F502D3523 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9EEC0A52DF0678F80E8266F /* AppConfig.swift in Sources */,
+				8A5BE374E97B8B86824A3F8D /* ArahDriverApp.swift in Sources */,
+				32E042082E4602F0F942D522 /* RideMap.swift in Sources */,
+				D9C1542E5B0D020A5461E240 /* RideModels.swift in Sources */,
+				A2981DCFCC71529295E1C5DD /* RideScreen.swift in Sources */,
+				E48B1465C000F2436B49C98B /* RideStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A531DDAE5299177C987DCEE6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7085E3B8B7B25F360FBE04A5 /* AppConfig.swift in Sources */,
+				89173D5A7F8907D74C2C880D /* ArahCustomerApp.swift in Sources */,
+				653DB2A2AE42CD165CEB94EC /* RideMap.swift in Sources */,
+				F10BDB378546C0523CE734E5 /* RideModels.swift in Sources */,
+				F5E69144F768AEBFBD90C2B7 /* RideScreen.swift in Sources */,
+				9592EBFEEFF0F40C7D000127 /* RideStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0B74CDDD7A1E96AB2F474855 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Customer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = id.arahride.customer;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2F6321C44601108D6C474016 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		34183DDD9899A52A327FC1CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Customer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = id.arahride.customer;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5403B4400CDFBE31FF440B68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Driver/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = id.arahride.driver;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		878ACB9C63AC8B154982FD00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Driver/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = id.arahride.driver;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F7A42FD8D72E453E7507F0CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2C9F39949C43C33717E097A6 /* Build configuration list for PBXProject "ArahRide" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F6321C44601108D6C474016 /* Debug */,
+				F7A42FD8D72E453E7507F0CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9AFA1A4975A615211BF12687 /* Build configuration list for PBXNativeTarget "ArahCustomer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B74CDDD7A1E96AB2F474855 /* Debug */,
+				34183DDD9899A52A327FC1CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A593B1AA79DBF23188CB745E /* Build configuration list for PBXNativeTarget "ArahDriver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				878ACB9C63AC8B154982FD00 /* Debug */,
+				5403B4400CDFBE31FF440B68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E0EECED1AECD868D17DFDE03 /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maplibre/maplibre-gl-native-distribution";
+			requirement = {
+				kind = exactVersion;
+				version = 6.28.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A87AFD2F9A32F3682F7D7408 /* MapLibre */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E0EECED1AECD868D17DFDE03 /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */;
+			productName = MapLibre;
+		};
+		E01DEFA03A95BD238F7825F3 /* MapLibre */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E0EECED1AECD868D17DFDE03 /* XCRemoteSwiftPackageReference "maplibre-gl-native-distribution" */;
+			productName = MapLibre;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = B074066D48BCBDF243DBA004 /* Project object */;
+}
