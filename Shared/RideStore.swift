@@ -7,17 +7,21 @@ import CoreLocation
     @Published var pickup = RidePoint(latitude: -6.2088, longitude: 106.8456)
     @Published var dropoff = RidePoint(latitude: -6.1754, longitude: 106.8272)
     @Published var selection = "pickup"
+    @Published var pickupName = defaultPickupName
+    @Published var dropoffName = defaultDropoffName
     @Published private(set) var focusDriverRequest = 0
 
     let role: String
     private let baseURL: URL
+    private let session: URLSession
     private var socket: URLSessionWebSocketTask?
     private var streamTask: Task<Void, Never>?
     private let location: DriverLocation
 
-    init(role: String, baseURL: URL = AppConfig.apiBaseURL) {
+    init(role: String, baseURL: URL = AppConfig.apiBaseURL, session: URLSession = .shared) {
         self.role = role
         self.baseURL = baseURL
+        self.session = session
         self.location = DriverLocation(backgroundEnabled: role == "driver")
         location.onPoint = { [weak self] point in
             Task { @MainActor in self?.send("location", location: point) }
@@ -45,13 +49,16 @@ import CoreLocation
         Task {
             do {
                 var action = RideAction(role: role, action: name)
-                if name == "create" { action.pickup = pickup; action.dropoff = dropoff }
+                if name == "create" {
+                    action.pickup = pickup; action.dropoff = dropoff
+                    action.pickupName = pickupName; action.dropoffName = dropoffName
+                }
                 action.location = point
                 var request = URLRequest(url: baseURL.appendingPathComponent("v1/actions"))
                 request.httpMethod = "POST"
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.httpBody = try JSONEncoder().encode(action)
-                let (data, response) = try await URLSession.shared.data(for: request)
+                let (data, response) = try await session.data(for: request)
                 guard let http = response as? HTTPURLResponse else { throw URLError(.badServerResponse) }
                 if !(200..<300).contains(http.statusCode) {
                     throw RideNetworkError.message((try? JSONDecoder().decode(ServerError.self, from: data).error) ?? "Aksi gagal")
@@ -64,9 +71,44 @@ import CoreLocation
         }
     }
 
+    /// Throws a user-readable error for any non-2xx response.
+    func searchPlaces(query: String, center: RidePoint?) async throws -> [PlaceResult] {
+        var items = [URLQueryItem(name: "q", value: query)]
+        if let center {
+            items += [URLQueryItem(name: "lat", value: String(center.latitude)), URLQueryItem(name: "lon", value: String(center.longitude))]
+        }
+        struct Envelope: Decodable { let results: [PlaceResult] }
+        let (data, status) = try await placeRequest("v1/places/search", items)
+        try ensureSuccess(data, status)
+        return try JSONDecoder().decode(Envelope.self, from: data).results
+    }
+
+    /// Returns nil when the server has no matching place (HTTP 404).
+    func reverseGeocode(point: RidePoint) async throws -> PlaceResult? {
+        let (data, status) = try await placeRequest("v1/places/reverse", [
+            URLQueryItem(name: "lat", value: String(point.latitude)), URLQueryItem(name: "lon", value: String(point.longitude))])
+        if status == 404 { return nil }
+        try ensureSuccess(data, status)
+        return try JSONDecoder().decode(PlaceResult.self, from: data)
+    }
+
+    private func placeRequest(_ path: String, _ items: [URLQueryItem]) async throws -> (Data, Int) {
+        var parts = URLComponents(url: baseURL.appendingPathComponent(path), resolvingAgainstBaseURL: false)!
+        parts.queryItems = items
+        let (data, response) = try await session.data(from: parts.url!)
+        guard let http = response as? HTTPURLResponse else { throw URLError(.badServerResponse) }
+        return (data, http.statusCode)
+    }
+
+    private func ensureSuccess(_ data: Data, _ status: Int) throws {
+        guard (200..<300).contains(status) else {
+            throw RideNetworkError.message((try? JSONDecoder().decode(ServerError.self, from: data).error) ?? "Server gagal (\(status))")
+        }
+    }
+
     private func refresh() async {
         do {
-            let (data, _) = try await URLSession.shared.data(from: baseURL.appendingPathComponent("v1/state"))
+            let (data, _) = try await session.data(from: baseURL.appendingPathComponent("v1/state"))
             receive(try JSONDecoder().decode(RideSnapshot.self, from: data))
         } catch { self.error = "Server tidak tersedia: \(error.localizedDescription)" }
     }
@@ -76,7 +118,7 @@ import CoreLocation
             var parts = URLComponents(url: baseURL.appendingPathComponent("v1/events"), resolvingAgainstBaseURL: false)!
             parts.scheme = baseURL.scheme == "https" ? "wss" : "ws"
             parts.queryItems = [URLQueryItem(name: "role", value: role)]
-            let stream = URLSession.shared.webSocketTask(with: parts.url!)
+            let stream = session.webSocketTask(with: parts.url!)
             socket = stream
             stream.resume()
             do {

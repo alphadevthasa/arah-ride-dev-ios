@@ -9,27 +9,43 @@
 /* Begin PBXBuildFile section */
 		32E042082E4602F0F942D522 /* RideMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D458BB97A4CAB89A02A44081 /* RideMap.swift */; };
 		3C05F39C4A7392A4F81C2751 /* MapLibre in Frameworks */ = {isa = PBXBuildFile; productRef = E01DEFA03A95BD238F7825F3 /* MapLibre */; };
+		557C9198A595333C9AC246B9 /* PlaceSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECD759DD362B907273751D5 /* PlaceSearchTests.swift */; };
 		653DB2A2AE42CD165CEB94EC /* RideMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D458BB97A4CAB89A02A44081 /* RideMap.swift */; };
 		7085E3B8B7B25F360FBE04A5 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861491D6098AE61B8A0C132 /* AppConfig.swift */; };
 		89173D5A7F8907D74C2C880D /* ArahCustomerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D89D859E50F7CA078901C97 /* ArahCustomerApp.swift */; };
 		8A5BE374E97B8B86824A3F8D /* ArahDriverApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A6D5E5661C453EC5EF7BC0 /* ArahDriverApp.swift */; };
 		9592EBFEEFF0F40C7D000127 /* RideStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAEFDC8BDEEAA490EB34AA0 /* RideStore.swift */; };
 		A2981DCFCC71529295E1C5DD /* RideScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E195B1B6A6AC16D1EF6B9CB /* RideScreen.swift */; };
+		A488F8A03338DD334BB3CC9A /* PlaceSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B9D6A412694D83EA99428A /* PlaceSelection.swift */; };
 		C9EEC0A52DF0678F80E8266F /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861491D6098AE61B8A0C132 /* AppConfig.swift */; };
 		D9C1542E5B0D020A5461E240 /* RideModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20306D4FCAFEF4ACC83C7751 /* RideModels.swift */; };
 		E48B1465C000F2436B49C98B /* RideStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAEFDC8BDEEAA490EB34AA0 /* RideStore.swift */; };
 		F10BDB378546C0523CE734E5 /* RideModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20306D4FCAFEF4ACC83C7751 /* RideModels.swift */; };
 		F5E69144F768AEBFBD90C2B7 /* RideScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E195B1B6A6AC16D1EF6B9CB /* RideScreen.swift */; };
 		F805663E2C8E42D738479F8D /* MapLibre in Frameworks */ = {isa = PBXBuildFile; productRef = A87AFD2F9A32F3682F7D7408 /* MapLibre */; };
+		FA3589E4385D3DD866286E1F /* PlaceSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B9D6A412694D83EA99428A /* PlaceSelection.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D9D1A304570FE1D81CC16668 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B074066D48BCBDF243DBA004 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B823D149175EB1E42E643202;
+			remoteInfo = ArahCustomer;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		07AE3654D89A480ADC8FC644 /* ArahRideTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = ArahRideTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15A6D5E5661C453EC5EF7BC0 /* ArahDriverApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArahDriverApp.swift; sourceTree = "<group>"; };
 		20306D4FCAFEF4ACC83C7751 /* RideModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideModels.swift; sourceTree = "<group>"; };
+		3ECD759DD362B907273751D5 /* PlaceSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSearchTests.swift; sourceTree = "<group>"; };
 		52F978FEB2401133AD69F9F2 /* ArahDriver.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ArahDriver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D89D859E50F7CA078901C97 /* ArahCustomerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArahCustomerApp.swift; sourceTree = "<group>"; };
 		9E195B1B6A6AC16D1EF6B9CB /* RideScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideScreen.swift; sourceTree = "<group>"; };
 		9EAEFDC8BDEEAA490EB34AA0 /* RideStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideStore.swift; sourceTree = "<group>"; };
+		D0B9D6A412694D83EA99428A /* PlaceSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSelection.swift; sourceTree = "<group>"; };
 		D458BB97A4CAB89A02A44081 /* RideMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideMap.swift; sourceTree = "<group>"; };
 		D8B3CE71EBFB8235049BAE4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EA9422D35C529A386EE05796 /* ArahCustomer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ArahCustomer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				F861491D6098AE61B8A0C132 /* AppConfig.swift */,
+				D0B9D6A412694D83EA99428A /* PlaceSelection.swift */,
 				D458BB97A4CAB89A02A44081 /* RideMap.swift */,
 				20306D4FCAFEF4ACC83C7751 /* RideModels.swift */,
 				9E195B1B6A6AC16D1EF6B9CB /* RideScreen.swift */,
@@ -83,6 +100,7 @@
 			children = (
 				EA9422D35C529A386EE05796 /* ArahCustomer.app */,
 				52F978FEB2401133AD69F9F2 /* ArahDriver.app */,
+				07AE3654D89A480ADC8FC644 /* ArahRideTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +117,7 @@
 		895A9823461C7B9AC79A25BE = {
 			isa = PBXGroup;
 			children = (
+				E00182EC8C370DBA4B2D91E1 /* ArahRideTests */,
 				5F3AAD42D257499728B85C81 /* Customer */,
 				3414AA4ED0F81AB08677F822 /* Driver */,
 				4AD1FE22FECDC2F400A6B97F /* Shared */,
@@ -106,9 +125,35 @@
 			);
 			sourceTree = "<group>";
 		};
+		E00182EC8C370DBA4B2D91E1 /* ArahRideTests */ = {
+			isa = PBXGroup;
+			children = (
+				3ECD759DD362B907273751D5 /* PlaceSearchTests.swift */,
+			);
+			path = ArahRideTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A28662333807D7BDF8CA5967 /* ArahRideTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 723B65C201D31D4DD1C0F330 /* Build configuration list for PBXNativeTarget "ArahRideTests" */;
+			buildPhases = (
+				515991AAC1C12A7CD8E181CE /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E99EC3B51F3866A891308A1C /* PBXTargetDependency */,
+			);
+			name = ArahRideTests;
+			packageProductDependencies = (
+			);
+			productName = ArahRideTests;
+			productReference = 07AE3654D89A480ADC8FC644 /* ArahRideTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B823D149175EB1E42E643202 /* ArahCustomer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AFA1A4975A615211BF12687 /* Build configuration list for PBXNativeTarget "ArahCustomer" */;
@@ -156,6 +201,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					A28662333807D7BDF8CA5967 = {
+						DevelopmentTeam = "";
+					};
 					B823D149175EB1E42E643202 = {
 						DevelopmentTeam = "";
 					};
@@ -183,17 +231,27 @@
 			targets = (
 				B823D149175EB1E42E643202 /* ArahCustomer */,
 				D448E282F4B9B711605FEB99 /* ArahDriver */,
+				A28662333807D7BDF8CA5967 /* ArahRideTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		515991AAC1C12A7CD8E181CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				557C9198A595333C9AC246B9 /* PlaceSearchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5A46CA78D609411F502D3523 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C9EEC0A52DF0678F80E8266F /* AppConfig.swift in Sources */,
 				8A5BE374E97B8B86824A3F8D /* ArahDriverApp.swift in Sources */,
+				FA3589E4385D3DD866286E1F /* PlaceSelection.swift in Sources */,
 				32E042082E4602F0F942D522 /* RideMap.swift in Sources */,
 				D9C1542E5B0D020A5461E240 /* RideModels.swift in Sources */,
 				A2981DCFCC71529295E1C5DD /* RideScreen.swift in Sources */,
@@ -207,6 +265,7 @@
 			files = (
 				7085E3B8B7B25F360FBE04A5 /* AppConfig.swift in Sources */,
 				89173D5A7F8907D74C2C880D /* ArahCustomerApp.swift in Sources */,
+				A488F8A03338DD334BB3CC9A /* PlaceSelection.swift in Sources */,
 				653DB2A2AE42CD165CEB94EC /* RideMap.swift in Sources */,
 				F10BDB378546C0523CE734E5 /* RideModels.swift in Sources */,
 				F5E69144F768AEBFBD90C2B7 /* RideScreen.swift in Sources */,
@@ -215,6 +274,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E99EC3B51F3866A891308A1C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B823D149175EB1E42E643202 /* ArahCustomer */;
+			targetProxy = D9D1A304570FE1D81CC16668 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		0B74CDDD7A1E96AB2F474855 /* Debug */ = {
@@ -230,6 +297,23 @@
 				PRODUCT_BUNDLE_IDENTIFIER = id.arahride.customer;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		228FCCAA438660C91FF6FBC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = id.arahride.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ArahCustomer.app/ArahCustomer";
 			};
 			name = Debug;
 		};
@@ -330,6 +414,23 @@
 			};
 			name = Release;
 		};
+		813CA359FFB6CB5AD224B50C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = id.arahride.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ArahCustomer.app/ArahCustomer";
+			};
+			name = Release;
+		};
 		878ACB9C63AC8B154982FD00 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -412,6 +513,15 @@
 			buildConfigurations = (
 				2F6321C44601108D6C474016 /* Debug */,
 				F7A42FD8D72E453E7507F0CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		723B65C201D31D4DD1C0F330 /* Build configuration list for PBXNativeTarget "ArahRideTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				228FCCAA438660C91FF6FBC7 /* Debug */,
+				813CA359FFB6CB5AD224B50C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

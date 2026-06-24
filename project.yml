@@ -54,3 +54,33 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: id.arahride.driver
+  ArahRideTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [ArahRideTests]
+    dependencies:
+      - target: ArahCustomer
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: id.arahride.tests
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  ArahCustomer:
+    build:
+      targets:
+        ArahCustomer: all
+    run:
+      config: Debug
+  ArahDriver:
+    build:
+      targets:
+        ArahDriver: all
+    run:
+      config: Debug
+  ArahRideTests:
+    build:
+      targets:
+        ArahCustomer: all
+        ArahRideTests: [test]
+    test:
+      targets: [ArahRideTests]

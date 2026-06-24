@@ -82,8 +82,8 @@ struct RideScreen: View {
                 selection("Jemput", "pickup")
                 selection("Tujuan", "dropoff")
             }
-            Text("Jemput: \(store.pickup.label)").font(.caption)
-            Text("Tujuan: \(store.dropoff.label)").font(.caption)
+            Text("Jemput: \(store.pickupName)").font(.caption)
+            Text("Tujuan: \(store.dropoffName)").font(.caption)
             Button(store.snapshot?.driverOnline == true ? "Pesan perjalanan" : "Menunggu Driver online") {
                 store.send("create")
             }
@@ -131,8 +131,8 @@ struct RideScreen: View {
     private func driverInfo(_ ride: Ride) -> some View { Text("\(ride.driverName) · \(ride.driverPlate)").fontWeight(.semibold) }
     private func tripPoints(_ ride: Ride) -> some View {
         VStack(alignment: .leading) {
-            Text("Jemput: \(ride.pickup.label)")
-            Text("Tujuan: \(ride.dropoff.label)")
+            Text("Jemput: \(ride.pickupName)")
+            Text("Tujuan: \(ride.dropoffName)")
         }.font(.subheadline)
     }
     private func action(_ label: String, _ name: String) -> some View {
