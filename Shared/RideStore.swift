@@ -4,11 +4,7 @@ import CoreLocation
 @MainActor final class RideStore: ObservableObject {
     @Published var snapshot: RideSnapshot?
     @Published var error: String?
-    @Published var pickup = RidePoint(latitude: -6.2088, longitude: 106.8456)
-    @Published var dropoff = RidePoint(latitude: -6.1754, longitude: 106.8272)
-    @Published var selection = "pickup"
-    @Published var pickupName = defaultPickupName
-    @Published var dropoffName = defaultDropoffName
+    @Published var place = PlaceSelection()
     @Published private(set) var focusDriverRequest = 0
 
     let role: String
@@ -40,6 +36,38 @@ import CoreLocation
         socket?.cancel(with: .goingAway, reason: nil)
         socket = nil
         location.stop()
+    }
+
+    var pickup: RidePoint { place.pickup }
+    var dropoff: RidePoint { place.dropoff }
+    var pickupName: String { place.pickupName }
+    var dropoffName: String { place.dropoffName }
+
+    @discardableResult
+    func submitSearch() -> Task<Void, Never> {
+        guard let token = place.beginSearch() else { return Task {} }
+        let field = place.selecting, query = place.query.trimmingCharacters(in: .whitespacesAndNewlines), center = place.activePoint
+        return Task {
+            do {
+                let places = try await searchPlaces(query: query, center: center)
+                place.searchSucceeded(token: token, field: field, places: places)
+            } catch {
+                place.searchFailed(token: token, field: field)
+            }
+        }
+    }
+
+    func choose(_ result: PlaceResult) { place.choose(result) }
+
+    /// Updates the point immediately; the human-readable label is replaced only if lookup succeeds for the same point.
+    @discardableResult
+    func mapTapped(_ point: RidePoint) -> Task<Void, Never> {
+        let field = place.selecting
+        place.mapTapped(point)
+        return Task {
+            let found = try? await reverseGeocode(point: point)
+            place.reverseResolved(field: field, point: point, place: found)
+        }
     }
 
     func focusDriver() { focusDriverRequest += 1 }

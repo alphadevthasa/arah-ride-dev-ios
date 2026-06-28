@@ -5,9 +5,9 @@ import QuartzCore
 struct RideMap: UIViewRepresentable {
     let role: String
     let snapshot: RideSnapshot?
-    @Binding var pickup: RidePoint
-    @Binding var dropoff: RidePoint
-    let selection: String
+    let pickup: RidePoint
+    let dropoff: RidePoint
+    let onPick: (RidePoint) -> Void
     let focusDriverRequest: Int
 
     func makeCoordinator() -> Coordinator { Coordinator(self) }
@@ -92,7 +92,7 @@ struct RideMap: UIViewRepresentable {
             guard let map, parent.role == "customer", parent.snapshot?.ride == nil else { return }
             let coordinate = map.convert(recognizer.location(in: map), toCoordinateFrom: map)
             let point = RidePoint(latitude: coordinate.latitude, longitude: coordinate.longitude)
-            if parent.selection == "pickup" { parent.pickup = point } else { parent.dropoff = point }
+            parent.onPick(point)
         }
 
         func focusDriverIfRequested() {

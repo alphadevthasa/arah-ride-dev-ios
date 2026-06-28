@@ -12,8 +12,8 @@ struct RideScreen: View {
 
     var body: some View {
         ZStack {
-            RideMap(role: role, snapshot: store.snapshot, pickup: $store.pickup, dropoff: $store.dropoff,
-                    selection: store.selection, focusDriverRequest: store.focusDriverRequest)
+            RideMap(role: role, snapshot: store.snapshot, pickup: store.pickup, dropoff: store.dropoff,
+                    onPick: { store.mapTapped($0) }, focusDriverRequest: store.focusDriverRequest)
                 .ignoresSafeArea()
             VStack(spacing: 0) {
                 VStack(alignment: .leading, spacing: 3) {
@@ -77,13 +77,13 @@ struct RideScreen: View {
             }
         } else {
             title("Mau ke mana hari ini?")
-            Text("Ketuk peta untuk memilih titik. Pilih jenis titik dahulu.").font(.subheadline)
+            Text("Cari alamat atau nama tempat, atau ketuk peta. Pilih jenis titik dahulu.").font(.subheadline)
             HStack {
                 selection("Jemput", "pickup")
                 selection("Tujuan", "dropoff")
             }
-            Text("Jemput: \(store.pickupName)").font(.caption)
-            Text("Tujuan: \(store.dropoffName)").font(.caption)
+            locationText(store.pickupName, store.dropoffName).font(.caption)
+            placeSearch
             Button(store.snapshot?.driverOnline == true ? "Pesan perjalanan" : "Menunggu Driver online") {
                 store.send("create")
             }
@@ -131,8 +131,7 @@ struct RideScreen: View {
     private func driverInfo(_ ride: Ride) -> some View { Text("\(ride.driverName) · \(ride.driverPlate)").fontWeight(.semibold) }
     private func tripPoints(_ ride: Ride) -> some View {
         VStack(alignment: .leading) {
-            Text("Jemput: \(ride.pickupName)")
-            Text("Tujuan: \(ride.dropoffName)")
+            locationText(ride.pickupName, ride.dropoffName)
         }.font(.subheadline)
     }
     private func action(_ label: String, _ name: String) -> some View {
@@ -147,7 +146,34 @@ struct RideScreen: View {
             .frame(maxWidth: .infinity)
     }
     private func selection(_ label: String, _ key: String) -> some View {
-        Button(store.selection == key ? "● \(label)" : label) { store.selection = key }
+        Button(store.place.selecting == key ? "● \(label)" : label) { store.place.select(key) }
             .buttonStyle(.bordered)
+    }
+    private func locationText(_ pickupName: String, _ dropoffName: String) -> some View {
+        VStack(alignment: .leading) {
+            ForEach(locationLines(pickupName: pickupName, dropoffName: dropoffName), id: \.self) { Text($0) }
+        }
+    }
+    @ViewBuilder private var placeSearch: some View {
+        HStack {
+            TextField(store.place.selecting == "pickup" ? "Cari titik jemput" : "Cari titik tujuan", text: $store.place.query)
+                .textFieldStyle(.roundedBorder)
+                .submitLabel(.search)
+                .onSubmit { store.submitSearch() }
+            Button("Cari") { store.submitSearch() }.buttonStyle(.borderedProminent).tint(navy)
+        }
+        switch store.place.search {
+        case .idle: EmptyView()
+        case .loading: Text("Mencari…").font(.subheadline)
+        case .empty: Text(PlaceSelection.emptyMessage).font(.subheadline)
+        case let .error(message):
+            Text(message).font(.subheadline).foregroundStyle(.red)
+            if message == PlaceSelection.failureMessage { Button("Coba lagi") { store.submitSearch() }.buttonStyle(.bordered) }
+        case let .results(places):
+            ForEach(Array(places.prefix(8).enumerated()), id: \.offset) { _, result in
+                Button(result.displayName) { store.choose(result) }
+                    .font(.subheadline).multilineTextAlignment(.leading)
+            }
+        }
     }
 }

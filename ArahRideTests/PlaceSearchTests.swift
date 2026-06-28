@@ -117,4 +117,133 @@ final class StubProtocol: URLProtocol {
         selection.searchSucceeded(token: secondToken!, field: "pickup", places: [new])
         XCTAssertEqual(selection.search, .results([new]))
     }
+
+    // MARK: Selection state (Task 6)
+
+    private let gambir = PlaceResult(name: "Stasiun Gambir", displayName: "Stasiun Gambir, Jakarta Pusat", point: RidePoint(latitude: -6.1766, longitude: 106.8306))
+    private let mangga = PlaceResult(name: "Pasar Mangga Dua — Pademangan", displayName: "Pasar Mangga Dua — Pademangan, Jakarta Utara", point: RidePoint(latitude: -6.137, longitude: 106.83))
+    private let tap = RidePoint(latitude: -6.2, longitude: 106.8)
+
+    func testSearchNeedsExplicitSubmitAndRejectsTooShortQuery() {
+        var selection = PlaceSelection()
+        selection.query = "gambir"
+        XCTAssertEqual(selection.search, .idle)
+        XCTAssertEqual(selection.searchToken, 0)
+        selection.query = " a "
+        XCTAssertNil(selection.beginSearch())
+        XCTAssertEqual(selection.search, .error(PlaceSelection.tooShortMessage))
+        XCTAssertEqual(selection.searchToken, 0)
+    }
+
+    func testLoadingEmptyAndRetryableErrorStates() {
+        var selection = PlaceSelection()
+        selection.query = "gambir"
+        var token = selection.beginSearch()!
+        XCTAssertEqual(selection.search, .loading)
+        selection.searchSucceeded(token: token, field: "pickup", places: [])
+        XCTAssertEqual(selection.search, .empty)
+        token = selection.beginSearch()!
+        selection.searchFailed(token: token, field: "pickup")
+        XCTAssertEqual(selection.search, .error(PlaceSelection.failureMessage))
+        XCTAssertNotNil(selection.beginSearch())
+        XCTAssertEqual(selection.search, .loading)
+    }
+
+    func testSwitchingFieldInvalidatesPendingAndShownResults() {
+        var selection = PlaceSelection()
+        selection.query = "gambir"
+        let token = selection.beginSearch()!
+        selection.select("dropoff")
+        XCTAssertEqual(selection.search, .idle)
+        selection.searchSucceeded(token: token, field: "pickup", places: [gambir])
+        XCTAssertEqual(selection.search, .idle)
+        selection.select("pickup")
+        let second = selection.beginSearch()!
+        selection.searchSucceeded(token: second, field: "pickup", places: [gambir])
+        selection.select("dropoff")
+        XCTAssertEqual(selection.search, .idle)
+    }
+
+    func testChoosingResultUpdatesActivePointAndNameAndClosesResults() {
+        var selection = PlaceSelection()
+        selection.select("dropoff")
+        selection.query = "mangga"
+        let token = selection.beginSearch()!
+        selection.searchSucceeded(token: token, field: "dropoff", places: [mangga])
+        selection.choose(mangga)
+        XCTAssertEqual(selection.dropoff, mangga.point)
+        XCTAssertEqual(selection.dropoffName, "Pasar Mangga Dua — Pademangan, Jakarta Utara")
+        XCTAssertEqual(selection.pickupName, defaultPickupName)
+        XCTAssertEqual(selection.search, .idle)
+    }
+
+    func testMapTapKeepsPointWithGenericLabelWhenReverseFailsOrIsStale() {
+        var selection = PlaceSelection()
+        selection.mapTapped(tap)
+        XCTAssertEqual(selection.pickup, tap)
+        XCTAssertEqual(selection.pickupName, PlaceSelection.mapPickName)
+        selection.reverseResolved(field: "pickup", point: tap, place: nil)
+        XCTAssertEqual(selection.pickupName, PlaceSelection.mapPickName)
+        selection.mapTapped(RidePoint(latitude: -6.3, longitude: 106.9))
+        selection.reverseResolved(field: "pickup", point: tap, place: gambir)
+        XCTAssertEqual(selection.pickupName, PlaceSelection.mapPickName)
+        selection.reverseResolved(field: "pickup", point: RidePoint(latitude: -6.3, longitude: 106.9), place: gambir)
+        XCTAssertEqual(selection.pickupName, gambir.displayName)
+    }
+
+    func testLateReverseForOtherFieldStillLabelsItsOwnUnchangedPoint() {
+        var selection = PlaceSelection()
+        selection.mapTapped(tap)
+        selection.select("dropoff")
+        selection.reverseResolved(field: "pickup", point: tap, place: gambir)
+        XCTAssertEqual(selection.pickupName, gambir.displayName)
+    }
+
+    func testStoreSearchIgnoresOlderResponseArrivingAfterNewerQuery() async {
+        StubProtocol.handler = { request in
+            let q = URLComponents(url: request.url!, resolvingAgainstBaseURL: false)!.queryItems!.first { $0.name == "q" }!.value!
+            let name = q == "gambir" ? "Stasiun Gambir" : "Pasar Mangga Dua"
+            return (200, Data(#"{"results":[{"name":"\#(name)","displayName":"\#(name)","point":{"latitude":-6.17,"longitude":106.83}}]}"#.utf8))
+        }
+        store.place.query = "gambir"
+        let first = store.submitSearch()
+        store.place.query = "mangga"
+        let second = store.submitSearch()
+        await second.value
+        await first.value
+        guard case let .results(places) = store.place.search else { return XCTFail("expected results, got \(store.place.search)") }
+        XCTAssertEqual(places.map(\.displayName), ["Pasar Mangga Dua"])
+    }
+
+    func testStoreSearchFailureShowsRetryableError() async {
+        respond(502, #"{"error":"x"}"#)
+        store.place.query = "gambir"
+        await store.submitSearch().value
+        XCTAssertEqual(store.place.search, .error(PlaceSelection.failureMessage))
+    }
+
+    func testStoreMapTapReverseSuccessAndFailure() async {
+        respond(200, #"{"name":"Monas","displayName":"Monas, Jakarta","point":{"latitude":-6.2,"longitude":106.8}}"#)
+        let lookup = store.mapTapped(tap)
+        XCTAssertEqual(store.pickup, tap)
+        XCTAssertEqual(store.pickupName, PlaceSelection.mapPickName)
+        await lookup.value
+        XCTAssertEqual(store.pickupName, "Monas, Jakarta")
+        respond(404, #"{"error":"x"}"#)
+        await store.mapTapped(RidePoint(latitude: -6.4, longitude: 106.7)).value
+        XCTAssertEqual(store.pickupName, PlaceSelection.mapPickName)
+        respond(500, "oops")
+        await store.mapTapped(RidePoint(latitude: -6.5, longitude: 106.7)).value
+        XCTAssertEqual(store.pickupName, PlaceSelection.mapPickName)
+        XCTAssertEqual(store.pickup, RidePoint(latitude: -6.5, longitude: 106.7))
+    }
+
+    func testLocationTextUsesLabelsNeverCoordinates() throws {
+        let lines = locationLines(pickupName: "Stasiun Gambir", dropoffName: "Pasar Mangga Dua — Pademangan")
+        XCTAssertEqual(lines, ["Jemput: Stasiun Gambir", "Tujuan: Pasar Mangga Dua — Pademangan"])
+        let json = String(format: snapshotJSON, "")
+        let ride = try XCTUnwrap(JSONDecoder().decode(RideSnapshot.self, from: Data(json.utf8)).ride)
+        let texts = locationLines(pickupName: ride.pickupName, dropoffName: ride.dropoffName) + [PlaceSelection().pickupName, PlaceSelection().dropoffName, PlaceSelection.mapPickName, PlaceSelection.failureMessage]
+        for text in texts { XCTAssertNil(text.range(of: #"-?\d+[.,]\d{3,}"#, options: .regularExpression), text) }
+    }
 }
