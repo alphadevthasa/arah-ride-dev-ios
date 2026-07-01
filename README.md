@@ -29,3 +29,9 @@ Default API simulator adalah `http://127.0.0.1:18080`. URL API dan style peta ad
 Peta demo memakai [OpenFreeMap](https://openfreemap.org/quick_start/) dengan data OpenStreetMap dan atribusi terlihat. Ini adalah prototipe satu Driver/satu pesanan; batas server dan fitur produksi dijelaskan di README backend.
 
 Backend demo mengambil geometri jalan dari OSRM dan menampilkannya sebagai polyline di peta. Saat Driver menekan **Mulai perjalanan**, lokasi simulasi dikirim tiap 100 ms selama 16 detik mengikuti polyline; lokasi perangkat Driver dijeda selama simulasi.
+
+## Hasil verifikasi pencarian tempat (2026-10-15)
+
+- Otomatis: iOS: `xcodebuild test -scheme ArahRideTests` lulus (18 test); build `ArahCustomer` dan `ArahDriver` lulus.
+- Backend dengan Photon palsu lokal (`ARAH_GEOCODER_URL`): `/v1/places/search` dan `/v1/places/reverse` memetakan hasil dengan benar; kata kunci kosong → 400.
+- **Belum diverifikasi**: Photon publik (`photon.komoot.io`) tidak terjangkau dari mesin ini saat pengujian (backend mengembalikan 502 generik), sehingga pencarian alamat/POI Indonesia sungguhan dan ketersediaan produksi tidak teruji. Uji emulator/simulator end-to-end (pilih titik, buat pesanan, label di app Driver, tap peta) juga belum dijalankan.
