@@ -13,7 +13,7 @@ struct RideScreen: View {
     var body: some View {
         ZStack {
             RideMap(role: role, snapshot: store.snapshot, pickup: store.pickup, dropoff: store.dropoff,
-                    onPick: { store.mapTapped($0) }, focusDriverRequest: store.focusDriverRequest)
+                    onPick: { store.mapTapped($0) }, focusDriverRequest: store.focusDriverRequest, placeFocus: store.placeFocus)
                 .ignoresSafeArea()
             VStack(spacing: 0) {
                 VStack(alignment: .leading, spacing: 3) {
@@ -151,7 +151,9 @@ struct RideScreen: View {
     }
     private func locationText(_ pickupName: String, _ dropoffName: String) -> some View {
         VStack(alignment: .leading) {
-            ForEach(locationLines(pickupName: pickupName, dropoffName: dropoffName), id: \.self) { Text($0) }
+            ForEach(locationLines(pickupName: pickupName, dropoffName: dropoffName), id: \.self) {
+                Text($0).fixedSize(horizontal: false, vertical: true)
+            }
         }
     }
     @ViewBuilder private var placeSearch: some View {
@@ -159,6 +161,8 @@ struct RideScreen: View {
             TextField(store.place.selecting == "pickup" ? "Cari titik jemput" : "Cari titik tujuan", text: $store.place.query)
                 .textFieldStyle(.roundedBorder)
                 .submitLabel(.search)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
                 .onSubmit { store.submitSearch() }
             Button("Cari") { store.submitSearch() }.buttonStyle(.borderedProminent).tint(navy)
         }
@@ -171,8 +175,10 @@ struct RideScreen: View {
             if message == PlaceSelection.failureMessage { Button("Coba lagi") { store.submitSearch() }.buttonStyle(.bordered) }
         case let .results(places):
             ForEach(Array(places.prefix(8).enumerated()), id: \.offset) { _, result in
-                Button(result.displayName) { store.choose(result) }
-                    .font(.subheadline).multilineTextAlignment(.leading)
+                Button { store.choose(result) } label: {
+                    Text(result.displayName).multilineTextAlignment(.leading).frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .font(.subheadline)
             }
         }
     }

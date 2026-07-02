@@ -8,6 +8,12 @@ enum SearchState: Equatable {
     case error(String)
 }
 
+/// Asks the map to recenter on a chosen place; `id` makes repeated choices of the same point distinct.
+struct PlaceFocus: Equatable {
+    let id: Int
+    let point: RidePoint
+}
+
 func locationLines(pickupName: String, dropoffName: String) -> [String] {
     ["Jemput: \(pickupName)", "Tujuan: \(dropoffName)"]
 }

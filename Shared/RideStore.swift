@@ -6,6 +6,7 @@ import CoreLocation
     @Published var error: String?
     @Published var place = PlaceSelection()
     @Published private(set) var focusDriverRequest = 0
+    @Published private(set) var placeFocus: PlaceFocus?
 
     let role: String
     private let baseURL: URL
@@ -57,7 +58,10 @@ import CoreLocation
         }
     }
 
-    func choose(_ result: PlaceResult) { place.choose(result) }
+    func choose(_ result: PlaceResult) {
+        place.choose(result)
+        placeFocus = PlaceFocus(id: (placeFocus?.id ?? 0) + 1, point: result.point)
+    }
 
     /// Updates the point immediately; the human-readable label is replaced only if lookup succeeds for the same point.
     @discardableResult

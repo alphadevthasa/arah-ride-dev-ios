@@ -9,6 +9,7 @@ struct RideMap: UIViewRepresentable {
     let dropoff: RidePoint
     let onPick: (RidePoint) -> Void
     let focusDriverRequest: Int
+    let placeFocus: PlaceFocus?
 
     func makeCoordinator() -> Coordinator { Coordinator(self) }
 
@@ -28,6 +29,7 @@ struct RideMap: UIViewRepresentable {
         context.coordinator.parent = self
         context.coordinator.updateMarkers()
         context.coordinator.focusDriverIfRequested()
+        context.coordinator.focusPlaceIfRequested()
     }
 
     final class Coordinator: NSObject, MLNMapViewDelegate {
@@ -44,6 +46,7 @@ struct RideMap: UIViewRepresentable {
         private var animationTo = CLLocationCoordinate2D(latitude: 0, longitude: 0)
         private var animationStartTime: CFTimeInterval = 0
         private var lastFocusRequest = 0
+        private var lastPlaceFocusID = 0
         private lazy var driverImage: MLNAnnotationImage = {
             let image = UIGraphicsImageRenderer(size: CGSize(width: 48, height: 48)).image { context in
                 let bounds = CGRect(x: 0, y: 0, width: 48, height: 48)
@@ -93,6 +96,12 @@ struct RideMap: UIViewRepresentable {
             let coordinate = map.convert(recognizer.location(in: map), toCoordinateFrom: map)
             let point = RidePoint(latitude: coordinate.latitude, longitude: coordinate.longitude)
             parent.onPick(point)
+        }
+
+        func focusPlaceIfRequested() {
+            guard let focus = parent.placeFocus, focus.id != lastPlaceFocusID else { return }
+            lastPlaceFocusID = focus.id
+            map?.setCenter(focus.point.coordinate, zoomLevel: 15, animated: true)
         }
 
         func focusDriverIfRequested() {
