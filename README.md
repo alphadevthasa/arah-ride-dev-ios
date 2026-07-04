@@ -12,7 +12,7 @@ Pratinjau: [tampilan Customer dengan ikon mobil](docs/live-car.png).
 
 ## Menjalankan
 
-1. Jalankan server demo Go di [server demo Go](../../ArahRideBackend/README.md).
+1. Jalankan [Arah Ride Backend Dev](https://github.com/alphadevthasa/arah-ride-backend-dev).
 2. Buka `ArahRide.xcodeproj` di Xcode. Jalankan `ArahDriver` dan `ArahCustomer` pada simulator; keduanya dapat terpasang bersamaan.
 3. Aktifkan Driver, izinkan lokasi, pesan dari Customer, lalu terima dan selesaikan dari Driver. Untuk simulasi di Jakarta, set lokasi simulator di sekitar Jakarta.
 4. Jika mengubah `project.yml`, jalankan `xcodegen generate` lagi.
@@ -30,7 +30,7 @@ Peta demo memakai [OpenFreeMap](https://openfreemap.org/quick_start/) dengan dat
 
 Backend demo mengambil geometri jalan dari OSRM dan menampilkannya sebagai polyline di peta. Saat Driver menekan **Mulai perjalanan**, lokasi simulasi dikirim tiap 100 ms selama 16 detik mengikuti polyline; lokasi perangkat Driver dijeda selama simulasi.
 
-## Hasil verifikasi pencarian tempat (2026-10-15)
+## Hasil verifikasi pencarian tempat (2026-06-28)
 
 - Otomatis: iOS: `xcodebuild test -scheme ArahRideTests` lulus (18 test); build `ArahCustomer` dan `ArahDriver` lulus.
 - Backend dengan Photon palsu lokal (`ARAH_GEOCODER_URL`): `/v1/places/search` dan `/v1/places/reverse` memetakan hasil dengan benar; kata kunci kosong → 400.
