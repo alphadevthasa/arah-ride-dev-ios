@@ -16,6 +16,16 @@ GIF berikut merekam alur Customer iOS: memesan, mencari Driver, hingga perjalana
 
 ![Alur pemesanan Customer iOS](docs/arah-ios-order-flow.gif)
 
+## Tech stack
+
+- **Bahasa:** Swift
+- **UI:** SwiftUI, dengan `UIViewRepresentable` untuk membungkus peta native
+- **Peta:** MapLibre Native (`MLNMapView`) + tile OpenFreeMap (OpenStreetMap)
+- **Networking:** URLSession — HTTP (REST) dan WebSocket untuk snapshot live
+- **Lokasi:** Core Location (Driver), background location
+- **Project:** di-generate dengan XcodeGen dari `project.yml` → `ArahRide.xcodeproj`
+- **Target:** `ArahCustomer`, `ArahDriver`, `ArahRideTests`
+
 ## Menjalankan
 
 1. Jalankan [Arah Ride Backend Dev](https://github.com/alphadevthasa/arah-ride-backend-dev).
