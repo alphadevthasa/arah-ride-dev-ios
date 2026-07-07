@@ -12,15 +12,37 @@ Pratinjau: [tampilan Customer dengan ikon mobil](docs/live-car.png).
 
 ## Demo alur pemesanan
 
-GIF berikut merekam alur Customer iOS: memesan, mencari Driver, hingga perjalanan berjalan.
+GIF berikut merekam alur **Customer** (memesan, mencari Driver, hingga perjalanan berjalan) dan alur **Driver** (online, menerima pesanan, tiba, verifikasi PIN, menjalankan perjalanan) pada aplikasi iOS Dev/Portfolio:
 
-![Alur pemesanan Customer iOS](docs/arah-ios-order-flow.gif)
+<table>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/arah-ios-order-flow.gif" width="300" alt="Alur Customer iOS"><br>
+      <sub><b>Customer</b> — pesan &amp; pantau perjalanan</sub>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/arah-ios-driver-flow.gif" width="300" alt="Alur Driver iOS"><br>
+      <sub><b>Driver</b> — online, terima pesanan, jalankan</sub>
+    </td>
+  </tr>
+</table>
 
 ## Versi Production
 
-Aplikasi **Production** punya alur lebih lengkap daripada Dev/Portfolio: login OTP (nomor telepon), pemilihan layanan (Motor/Mobil) dan metode pembayaran (tunai/non-tunai), estimasi tarif, pembayaran non-tunai, rating, dan tip. Repo ini berisi versi **Dev/Portfolio**; berikut cuplikan aplikasi **Driver Production** sebagai gambaran seperti apa versi Production:
+Aplikasi **Production** punya alur lebih lengkap daripada Dev/Portfolio: login OTP (nomor telepon), pemilihan layanan (Motor/Mobil) dan metode pembayaran (tunai/non-tunai), estimasi tarif, pembayaran non-tunai, rating, dan tip. Repo ini berisi versi **Dev/Portfolio**; berikut cuplikan aplikasi **Customer** dan **Driver Production** sebagai gambaran seperti apa versi Production:
 
-![Alur Production Driver iOS](docs/arah-production-driver-flow.gif)
+<table>
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/arah-production-customer-flow.gif" width="300" alt="Production Customer iOS"><br>
+      <sub><b>Customer Production</b> — order → perjalanan → bayar → tip</sub>
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="docs/arah-production-driver-flow.gif" width="300" alt="Production Driver iOS"><br>
+      <sub><b>Driver Production</b> — online → terima → tiba → PIN → perjalanan</sub>
+    </td>
+  </tr>
+</table>
 
 ## Tech stack
 
