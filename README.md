@@ -10,6 +10,12 @@ Peta dapat diperbesar atau diperkecil dengan gestur cubit.
 
 Pratinjau: [tampilan Customer dengan ikon mobil](docs/live-car.png).
 
+## Demo alur pemesanan
+
+GIF berikut merekam alur Customer iOS: memesan, mencari Driver, hingga perjalanan berjalan.
+
+![Alur pemesanan Customer iOS](docs/arah-ios-order-flow.gif)
+
 ## Menjalankan
 
 1. Jalankan [Arah Ride Backend Dev](https://github.com/alphadevthasa/arah-ride-backend-dev).
