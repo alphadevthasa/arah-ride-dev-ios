@@ -16,6 +16,12 @@ GIF berikut merekam alur Customer iOS: memesan, mencari Driver, hingga perjalana
 
 ![Alur pemesanan Customer iOS](docs/arah-ios-order-flow.gif)
 
+## Versi Production
+
+Aplikasi **Production** punya alur lebih lengkap daripada Dev/Portfolio: login OTP (nomor telepon), pemilihan layanan (Motor/Mobil) dan metode pembayaran (tunai/non-tunai), estimasi tarif, pembayaran non-tunai, rating, dan tip. Repo ini berisi versi **Dev/Portfolio**; berikut cuplikan aplikasi **Driver Production** sebagai gambaran seperti apa versi Production:
+
+![Alur Production Driver iOS](docs/arah-production-driver-flow.gif)
+
 ## Tech stack
 
 - **Bahasa:** Swift
