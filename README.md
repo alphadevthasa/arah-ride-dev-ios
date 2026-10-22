@@ -1,81 +1,81 @@
-# ArahRide — iOS native
+# ArahRide — Native iOS
 
-Satu proyek Xcode dengan dua target aplikasi terpisah:
+A single Xcode project with two separate app targets:
 
-- `ArahCustomer` (`id.arahride.customer`)
-- `ArahDriver` (`id.arahride.driver`)
+- **ArahCustomer** (id.arahride.customer)
+- **ArahDriver** (id.arahride.driver)
 
-Keduanya memakai SwiftUI untuk layar, `MLNMapView` MapLibre melalui `UIViewRepresentable` untuk peta native, serta URLSession untuk HTTP dan WebSocket. Posisi Driver diambil dari Core Location ketika online. Ikon mobil bergerak halus di antara dua pembaruan lokasi; tombol **Lihat posisi Driver** mengarahkan peta Customer ke lokasi terbaru. Target Driver mengaktifkan background location; iOS menampilkan indikator lokasi sesuai aturan sistem.
-Peta dapat diperbesar atau diperkecil dengan gestur cubit.
+Both use SwiftUI for their screens, MapLibre MLNMapView through UIViewRepresentable for native maps, and URLSession for HTTP and WebSocket communication. The Driver app gets its location from Core Location while online. The car icon moves smoothly between location updates, and the **View Driver Location** button moves the Customer map to the latest location. The Driver target enables background location; iOS displays the location indicator as required by the system.
+The map supports pinch-to-zoom gestures.
 
-Pratinjau: [tampilan Customer dengan ikon mobil](docs/live-car.png).
+Preview: [Customer screen with the car icon](docs/live-car.png).
 
-## Demo alur pemesanan
+## Booking flow demo
 
-GIF berikut merekam alur **Customer** (memesan, mencari Driver, hingga perjalanan berjalan) dan alur **Driver** (online, menerima pesanan, tiba, verifikasi PIN, menjalankan perjalanan) pada aplikasi iOS Dev/Portfolio:
+The GIFs below show the **Customer** flow (placing a booking, finding a Driver, and tracking an active ride) and the **Driver** flow (going online, accepting a booking, arriving, verifying a PIN, and starting the ride) in the iOS Dev/Portfolio app:
 
 <table>
   <tr>
     <td align="center" valign="top" width="50%">
-      <img src="docs/arah-ios-order-flow.gif" width="300" alt="Alur Customer iOS"><br>
-      <sub><b>Customer</b> — pesan &amp; pantau perjalanan</sub>
+      <img src="docs/arah-ios-order-flow.gif" width="300" alt="iOS Customer flow"><br>
+      <sub><b>Customer</b> — book and track a ride</sub>
     </td>
     <td align="center" valign="top" width="50%">
-      <img src="docs/arah-ios-driver-flow.gif" width="300" alt="Alur Driver iOS"><br>
-      <sub><b>Driver</b> — online, terima pesanan, jalankan</sub>
+      <img src="docs/arah-ios-driver-flow.gif" width="300" alt="iOS Driver flow"><br>
+      <sub><b>Driver</b> — go online, accept a booking, and complete a ride</sub>
     </td>
   </tr>
 </table>
 
-## Versi Production
+## Production version
 
-Aplikasi **Production** punya alur lebih lengkap daripada Dev/Portfolio: login OTP (nomor telepon), pemilihan layanan (Motor/Mobil) dan metode pembayaran (tunai/non-tunai), estimasi tarif, pembayaran non-tunai, rating, dan tip. Repo ini berisi versi **Dev/Portfolio**; berikut cuplikan aplikasi **Customer** dan **Driver Production** sebagai gambaran seperti apa versi Production:
+The **Production** app has a more complete flow than Dev/Portfolio: OTP login with a phone number, service selection (motorcycle/car) and payment method selection (cash/non-cash), fare estimates, non-cash payments, ratings, and tips. This repository contains the **Dev/Portfolio** version. The clips below show the **Production Customer** and **Driver** apps for reference:
 
 <table>
   <tr>
     <td align="center" valign="top" width="50%">
-      <img src="docs/arah-production-customer-flow.gif" width="300" alt="Production Customer iOS"><br>
-      <sub><b>Customer Production</b> — order → perjalanan → bayar → tip</sub>
+      <img src="docs/arah-production-customer-flow.gif" width="300" alt="Production Customer on iOS"><br>
+      <sub><b>Production Customer</b> — order → ride → payment → tip</sub>
     </td>
     <td align="center" valign="top" width="50%">
-      <img src="docs/arah-production-driver-flow.gif" width="300" alt="Production Driver iOS"><br>
-      <sub><b>Driver Production</b> — online → terima → tiba → PIN → perjalanan</sub>
+      <img src="docs/arah-production-driver-flow.gif" width="300" alt="Production Driver on iOS"><br>
+      <sub><b>Production Driver</b> — online → accept → arrive → PIN → ride</sub>
     </td>
   </tr>
 </table>
 
 ## Tech stack
 
-- **Bahasa:** Swift
-- **UI:** SwiftUI, dengan `UIViewRepresentable` untuk membungkus peta native
-- **Peta:** MapLibre Native (`MLNMapView`) + tile OpenFreeMap (OpenStreetMap)
-- **Networking:** URLSession — HTTP (REST) dan WebSocket untuk snapshot live
-- **Lokasi:** Core Location (Driver), background location
-- **Project:** di-generate dengan XcodeGen dari `project.yml` → `ArahRide.xcodeproj`
-- **Target:** `ArahCustomer`, `ArahDriver`, `ArahRideTests`
+- **Language:** Swift
+- **UI:** SwiftUI, with UIViewRepresentable wrapping the native map
+- **Maps:** MapLibre Native (MLNMapView) with OpenFreeMap tiles (OpenStreetMap)
+- **Networking:** URLSession — HTTP (REST) and WebSocket for live snapshots
+- **Location:** Core Location (Driver), including background location
+- **Project:** Generated from project.yml using XcodeGen → ArahRide.xcodeproj
+- **Targets:** ArahCustomer, ArahDriver, ArahRideTests
 
-## Menjalankan
+## Getting started
 
-1. Jalankan [Arah Ride Backend Dev](https://github.com/alphadevthasa/arah-ride-backend-dev).
-2. Buka `ArahRide.xcodeproj` di Xcode. Jalankan `ArahDriver` dan `ArahCustomer` pada simulator; keduanya dapat terpasang bersamaan.
-3. Aktifkan Driver, izinkan lokasi, pesan dari Customer, lalu terima dan selesaikan dari Driver. Untuk simulasi di Jakarta, set lokasi simulator di sekitar Jakarta.
-4. Jika mengubah `project.yml`, jalankan `xcodegen generate` lagi.
+1. Run [Arah Ride Backend Dev](https://github.com/alphadevthasa/arah-ride-backend-dev).
+2. Open ArahRide.xcodeproj in Xcode. Run ArahDriver and ArahCustomer in the simulator; both can be installed at the same time.
+3. Bring the Driver online, allow location access, then place an order from Customer and accept and complete it in Driver. For Jakarta simulation, set the simulator location near Jakarta.
+4. If you change project.yml, run xcodegen generate again.
 
-Build terminal:
+Terminal builds:
 
-```sh
+~~~sh
 xcodebuild -project ArahRide.xcodeproj -scheme ArahCustomer -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' build CODE_SIGNING_ALLOWED=NO
 xcodebuild -project ArahRide.xcodeproj -scheme ArahDriver -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' build CODE_SIGNING_ALLOWED=NO
-```
+~~~
 
-Default API simulator adalah `http://127.0.0.1:18080`. URL API dan style peta ada di `project.yml` sebagai `ArahAPIBaseURL` dan `ArahMapStyleURL`; regenerasi proyek setelah mengganti. Untuk perangkat fisik, gunakan hostname LAN yang bisa dijangkau. Untuk rilis, gunakan HTTPS dan hosting peta OSM dengan SLA atau milik sendiri.
+The simulator API default is http://127.0.0.1:18080. The API URL and map style are configured in project.yml as ArahAPIBaseURL and ArahMapStyleURL; regenerate the project after changing them. For physical devices, use a reachable LAN hostname. For releases, use HTTPS and an OSM map host with an SLA or your own map hosting.
 
-Peta demo memakai [OpenFreeMap](https://openfreemap.org/quick_start/) dengan data OpenStreetMap dan atribusi terlihat. Ini adalah prototipe satu Driver/satu pesanan; batas server dan fitur produksi dijelaskan di README backend.
+The demo map uses [OpenFreeMap](https://openfreemap.org/quick_start/) with OpenStreetMap data and visible attribution. This is a single-Driver, single-order prototype; the backend README describes server limitations and production features.
 
-Backend demo mengambil geometri jalan dari OSRM dan menampilkannya sebagai polyline di peta. Saat Driver menekan **Mulai perjalanan**, lokasi simulasi dikirim tiap 100 ms selama 16 detik mengikuti polyline; lokasi perangkat Driver dijeda selama simulasi.
+The demo backend retrieves road geometry from OSRM and displays it as a polyline on the map. When the Driver taps **Start Ride**, simulated location updates are sent every 100 ms for 16 seconds along the polyline; the Driver device's location updates are paused during the simulation.
 
-## Hasil verifikasi pencarian tempat (2026-06-28)
+## Place search verification results (2026-06-28)
 
-- Otomatis: iOS: `xcodebuild test -scheme ArahRideTests` lulus (18 test); build `ArahCustomer` dan `ArahDriver` lulus.
-- Backend dengan Photon palsu lokal (`ARAH_GEOCODER_URL`): `/v1/places/search` dan `/v1/places/reverse` memetakan hasil dengan benar; kata kunci kosong → 400.
-- **Belum diverifikasi**: Photon publik (`photon.komoot.io`) tidak terjangkau dari mesin ini saat pengujian (backend mengembalikan 502 generik), sehingga pencarian alamat/POI Indonesia sungguhan dan ketersediaan produksi tidak teruji. Uji emulator/simulator end-to-end (pilih titik, buat pesanan, label di app Driver, tap peta) juga belum dijalankan.
+- Automated: iOS: xcodebuild test -scheme ArahRideTests passed (18 tests); ArahCustomer and ArahDriver builds passed.
+- With a local mock Photon server (ARAH_GEOCODER_URL), the backend mapped /v1/places/search and /v1/places/reverse results correctly; an empty query returned 400.
+- **Not verified:** The public Photon service (photon.komoot.io) was unreachable from this machine during testing (the backend returned a generic 502), so real Indonesian address/POI search and production availability were not tested. End-to-end simulator testing (select a point, create an order, show the label in the Driver app, and tap the map) has not been run.
